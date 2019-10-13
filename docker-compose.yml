@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api:
+    build: ./server/
+    volumes:
+      - ./server/:/app
+      - pycache_volume:/root/.cache
+    ports:
+      - "5432:5432"
+    command: pipenv run dev
+    environment:
+      PY_ENV: "local"
+
+volumes:
+  pycache_volume:
