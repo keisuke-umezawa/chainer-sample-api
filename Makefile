@@ -1,4 +1,4 @@
-.PHONY: api all black
+.PHONY: api all black build
 
 MAKEFILE_PATH := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 PROJECT_ROOT := $(abspath $(MAKEFILE_PATH)/)
