@@ -1,5 +1,7 @@
-import responder
+import io
 import numpy as np
+import responder
+
 from PIL import Image
 
 from services import PredictionService
@@ -16,10 +18,9 @@ api = responder.API(
 )
 
 
-@api.background.task
-def preprocess_image(image_file: str) -> np.ndarray:
+def preprocess_image(image_binary: bytes) -> np.ndarray:
     """Load and preprocess an image file for the model """
-    image = Image.open(image_file)
+    image = Image.open(io.BytesIO(image_binary))
     image = image.convert("L")
     image = image.resize((28, 28))
     image = np.asarray(image, dtype=np.float32)
@@ -44,7 +45,7 @@ async def index(request, response):
 
     elif request.method == "post":
         data = await request.media(format="files")
-        x = preprocess_image(data["file"])
+        x = preprocess_image(data["file"]["content"])
         prediction = PredictionService.predict(x)
         response.html = "<html><body>{}</body></html>".format(prediction)
 
