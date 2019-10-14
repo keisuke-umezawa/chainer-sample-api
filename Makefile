@@ -1,4 +1,4 @@
-.PHONY: api all black build
+.PHONY: api run black build
 
 MAKEFILE_PATH := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 PROJECT_ROOT := $(abspath $(MAKEFILE_PATH)/)
@@ -6,7 +6,7 @@ PROJECT_ROOT := $(abspath $(MAKEFILE_PATH)/)
 api:
 	docker-compose run api pipenv run dev
 
-all:
+run:
 	docker-compose up
 
 build:
