@@ -6,7 +6,7 @@ services:
       - ./server/:/app
       - pycache_volume:/root/.cache
     ports:
-      - "5432:5432"
+      - "8080:8080"
     command: pipenv run dev
     environment:
       PY_ENV: "local"

@@ -19,5 +19,5 @@ $ cd chainer-sample-api
 $ make build run
 ```
 
-3. Access to `localhost:5432`.
+3. Access to `localhost:8080`.
 
